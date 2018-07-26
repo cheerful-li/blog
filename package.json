@@ -4,7 +4,9 @@
   "description": "my blog, use koa + mongoose + react + redux + redux-saga",
   "main": "index.js",
   "scripts": {
-    "start_client": "cd ./src/client && cross-env NODE_ENV=development  webpack-dev-server --config ./webpack.config.js  --host 0.0.0.0"
+    "start_client": "cd ./src/client && cross-env NODE_ENV=development  webpack-dev-server --config ./webpack.config.js  --host 0.0.0.0",
+    "start_server": "cd ./src/server && supervisor index.js",
+    "start_mongod": "cd C:/software/mongodb/bin && ls && mongod --storageEngine mmapv1 --dbpath=../data/db"
   },
   "repository": {
     "type": "git",
@@ -48,7 +50,9 @@
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.8.0",
     "less-loader": "^4.1.0",
+    "mongoose": "^5.2.5",
     "style-loader": "^0.21.0",
+    "supervisor": "^0.12.0",
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
