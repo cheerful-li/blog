@@ -4,7 +4,7 @@
   "description": "my blog, use koa + mongoose + react + redux + redux-saga",
   "main": "index.js",
   "scripts": {
-    "start_client": "cd ./src/client && cross-env NODE_ENV=development  webpack-dev-server --config ./webpack.config.js  --host 0.0.0.0",
+    "start_client": "cd ./src/client && cross-env NODE_ENV=development  webpack-dev-server --config ./webpack.config.js  --host 0.0.0.0 --port 3001",
     "start_server": "cd ./src/server && supervisor index.js",
     "start_mongod": "cd C:/software/mongodb/bin && ls && mongod --storageEngine mmapv1 --dbpath=../data/db"
   },
@@ -32,7 +32,10 @@
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
+    "isomorphic-fetch": "^2.2.1",
     "koa": "^2.5.2",
+    "koa-router": "^7.4.0",
+    "qs": "^6.5.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",

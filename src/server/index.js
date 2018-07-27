@@ -4,8 +4,11 @@
  * Time 19:43
  */
 const Koa = require('koa')
-
 const app = new Koa()
+
+
+const githubAuth = require('./githubAuth')
+githubAuth.init(app)
 
 const { UserModel } = require('./db/models/user.js')
 const { createObjectId } = require('./db/index.js')
@@ -16,12 +19,12 @@ const user = new UserModel({
 })
 
 app.use(async (ctx, next) => {
- const result = await user.save()
-  console.log('保存用户成功', result)
-  const userList = await UserModel.find().exec()
+ // const result = await user.save()
+ //  console.log('保存用户成功', result)
+  /*const userList = await UserModel.find().exec()
   console.log('用户列表', JSON.stringify(userList))
   console.log(userList && userList[0]._id)
-  ctx.body = userList
+  ctx.body = userList*/
 })
 app.use(ctx => {
   ctx.body = 'hello Koa'
