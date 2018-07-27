@@ -8,7 +8,6 @@ const app = new Koa()
 
 
 const githubAuth = require('./githubAuth')
-githubAuth.init(app)
 
 const { UserModel } = require('./db/models/user.js')
 const { createObjectId } = require('./db/index.js')
@@ -18,6 +17,7 @@ const user = new UserModel({
   email: '602663787@qq.com',
 })
 
+app.use(githubAuth.routes)
 app.use(async (ctx, next) => {
  // const result = await user.save()
  //  console.log('保存用户成功', result)

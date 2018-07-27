@@ -83,7 +83,7 @@ function doFetch(url, options = {}) {
     }
   }
   const req = fetch(url, fetchOptions)
-  console.log(url, fetchOptions)
+  // console.log(url, fetchOptions)
   if (options.accept === 'json') {
     return req.then(response => response.json())
   } else {

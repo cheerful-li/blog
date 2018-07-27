@@ -9,6 +9,7 @@ const userSchema = new Schema({
   name: String,
   email: String,
   avatar: String,
+  githubId: Number,
 })
 // 设置输出
 userSchema.set('toJSON', { getters: true, transform: (doc, ret) => {
@@ -18,4 +19,21 @@ userSchema.set('toJSON', { getters: true, transform: (doc, ret) => {
 }})
 
 const  UserModel = db.model('user', userSchema)
-exports.UserModel = UserModel
+
+async function addOrUpdateGithubUser (data) {
+  const githubId = data.githubId
+  let user = await UserModel.findOne({ githubId }).exec()
+  if (user) {
+    user.name = data.name
+    user.email = data.email
+    user.avatar = data.avatar
+  } else {
+    user = new UserModel(data)
+  }
+  await user.save()
+  return user
+}
+module.exports = {
+  UserModel,
+  addOrUpdateGithubUser,
+}
