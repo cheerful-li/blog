@@ -9,8 +9,6 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects'
-import app from './app'
-
 
 const modelMap = {}
 const modelArr = []
@@ -46,12 +44,39 @@ export function getStore({ preloadedState = {}, middlewares = [] } = {}) {
   })
   function * rootSaga() {
     for (let effectName in allSagaEffect) {
-      yield takeEvery(effectName, allSagaEffect[effectName])
+      function * temp(action, ...args) {
+        try{
+          const result =  yield call(allSagaEffect[effectName], action)
+          action.__resolve(result)
+        } catch(e) {
+          action.__reject(e)
+        }
+
+      }
+      yield takeEvery(effectName, temp)
+    }
+  }
+  // 用于实现 dispatch({ type: 'xxx/xxx' }) 这种返回一个promise
+  const promiseMiddleware = store => next => action => {
+    action = action || {}
+    const { type } = action
+    // model 中定义的相关action
+    if (type && allSagaEffect[type]) {
+      const promise = new Promise(function(resolve, reject) {
+        action.__resolve = resolve.bind(promise)
+        action.__reject = reject.bind(promise)
+      })
+
+      next(action)
+      return promise
+    } else { // model之外的action
+      return next(action)
     }
   }
 
 
   rootReducers = combineReducers(reducerMap)
+  middlewares.push(promiseMiddleware)
   middlewares.push(sagaMiddleware)
   store = createStore(rootReducers, preloadedState, applyMiddleware(...middlewares))
   sagaMiddleware.run(rootSaga)

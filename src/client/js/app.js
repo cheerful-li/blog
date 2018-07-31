@@ -8,30 +8,10 @@ import { hot } from 'react-hot-loader'
 import qs from 'qs'
 import {registerModel, getStore} from './modelRegister'
 
-import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects'
-const blogModel = {
-  namespace: 'blog',
-  state: {
-    isLoading: false,
-    list: [],
-  },
-  reducers: {
-    setState(state, { payload }) {
-      return { ...state, ...payload }
-    }
-  },
-  effects: {
-    * getList(action) {
-      console.log('blog/getList', action)
-      yield put({ type: 'blog/setState', payload: { isLoading: true }})
-      return 123
-    }
-  }
-}
+import blogListModel from './models/blogList'
 
-registerModel(blogModel)
-const store =  getStore()
-window.store = store
+// 注册model
+registerModel(blogListModel)
 
 class App extends React.Component{
   render() {
