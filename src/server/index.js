@@ -4,31 +4,43 @@
  * Time 19:43
  */
 const Koa = require('koa')
+const KoaBody = require('koa-body')
+const KoaLogger = require('koa-logger')
+const KoaSession = require('koa-session')
+
+const router = require('./router.js')
+const privateConfig = require('./privateConfig')
+
 const app = new Koa()
 
+// secret key array, use for sign cookie
+app.keys = privateConfig.appSecretKeys
 
-const githubAuth = require('./githubAuth')
+// logger
+app.use(KoaLogger())
 
-const { UserModel } = require('./db/models/user.js')
-const { createObjectId } = require('./db/index.js')
+// session
+// ctx.session
+app.use(KoaSession({
+  key: 'koa:sess', /** cookie名 */
+  /** (number || 'session') maxAge in ms (default is 1 days) */
+  /** 'session' will result in a cookie that expires when session/browser is closed */
+  /** Warning: If a session cookie is stolen, this cookie will never expire */
+  maxAge: 86400000,
+  overwrite: true, /** (boolean) can overwrite or not (default true) */
+  httpOnly: true, /** (boolean) httpOnly or not (default true) */
+  signed: true, /** (boolean) signed or not (default true) */
+  rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+  renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+}, app))
 
-const user = new UserModel({
-  name: 'lilieming',
-  email: '602663787@qq.com',
-})
+// ctx.request.body
+// ctx.request.files
+app.use(KoaBody())
 
-app.use(githubAuth.routes)
-app.use(async (ctx, next) => {
- // const result = await user.save()
- //  console.log('保存用户成功', result)
-  /*const userList = await UserModel.find().exec()
-  console.log('用户列表', JSON.stringify(userList))
-  console.log(userList && userList[0]._id)
-  ctx.body = userList*/
-})
-app.use(ctx => {
-  ctx.body = 'hello Koa'
+// 路由
+app.use(router.routes())
 
-})
+// 监听端口
 app.listen(3000)
 console.log('listen 3000')
