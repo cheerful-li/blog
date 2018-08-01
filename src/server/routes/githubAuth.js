@@ -7,6 +7,7 @@ const { doFetch } = require('../../shared/fetch')
 const config = require('../privateConfig')
 const Router = require('koa-router')
 const { addOrUpdateGithubUser } = require('../controllers/user')
+const { createError } = require('../utils/formatResponse')
 
 const router = new Router()
 router.get('/codeCallback', async (ctx, next) => {
@@ -42,12 +43,15 @@ router.get('/codeCallback', async (ctx, next) => {
         githubId: userInfo.id,
       })
       console.log('github oauth success', userInfo)
-      ctx.body = user
-      return
+      ctx.session.userId = user.id
+      ctx.session.logined = true
+      // 登录成功， 跳转到管理页面
+      ctx.redirect('/manage')
+    } else {
+      ctx.body = createError(1)
     }
-
   }
-  ctx.body = '授权失败'
+  ctx.body = createError(1)
 
 
 })

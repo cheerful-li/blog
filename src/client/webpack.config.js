@@ -94,6 +94,7 @@ if (process.env.NODE_ENV === 'development') {
     contentBase: path.resolve(__dirname, './'),
     publicPath: '/',
     disableHostCheck: true,
+    historyApiFallback: true,
     host: '0.0.0.0',
     proxy: {
       '/xhr': {

@@ -10,6 +10,7 @@ const KoaSession = require('koa-session')
 
 const router = require('./router.js')
 const privateConfig = require('./privateConfig')
+const { createError } = require('./utils/formatResponse')
 
 const app = new Koa()
 
@@ -41,6 +42,16 @@ app.use(KoaBody())
 // 路由
 app.use(router.routes())
 
+// 全局错误捕获，处理
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    // will only respond with JSON
+    ctx.status = err.statusCode || err.status || 500;
+    ctx.body = createError(1, err && err.message);
+  }
+})
 // 监听端口
 app.listen(3000)
 console.log('listen 3000')
