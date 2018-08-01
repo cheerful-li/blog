@@ -5,7 +5,7 @@
  */
 /* 整合redux redux-saga, 实现dva中的model能力*/
 
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose  } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects'
@@ -20,7 +20,9 @@ export function registerModel(model = {}) {
   }
 }
 let store
-export function getStore({ preloadedState = {}, middlewares = [] } = {}) {
+// 添加redux-devtools-extension的支持
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+export function getStore({ preloadedState = {}, middlewares = [], enhancers = [] } = {}) {
   if (store) return store
   const sagaMiddleware = createSagaMiddleware()
   let reducerMap = {}
@@ -78,7 +80,7 @@ export function getStore({ preloadedState = {}, middlewares = [] } = {}) {
   rootReducers = combineReducers(reducerMap)
   middlewares.push(promiseMiddleware)
   middlewares.push(sagaMiddleware)
-  store = createStore(rootReducers, preloadedState, applyMiddleware(...middlewares))
+  store = createStore(rootReducers, preloadedState, composeEnhancers(...enhancers, applyMiddleware(...middlewares)))
   sagaMiddleware.run(rootSaga)
 
   return store
