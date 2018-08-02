@@ -36,9 +36,9 @@ export function getStore({ preloadedState = {}, middlewares = [], enhancers = []
       if (type.indexOf(namespace + '/') === 0) {
         let realType = type.slice(namespace.length + 1)
         const theReducer = reducers[realType]
-        if (theReducer) return theReducer(state, action)
+        if (theReducer) return theReducer(theState, action)
       }
-      return state
+      return theState
     }
     for (let effectName in effects) {
       allSagaEffect[namespace + '/' + effectName] = effects[effectName]
@@ -83,5 +83,6 @@ export function getStore({ preloadedState = {}, middlewares = [], enhancers = []
   store = createStore(rootReducers, preloadedState, composeEnhancers(...enhancers, applyMiddleware(...middlewares)))
   sagaMiddleware.run(rootSaga)
 
+  window.store = store
   return store
 }

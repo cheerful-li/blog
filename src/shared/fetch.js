@@ -45,7 +45,9 @@ const optionsDefault = {
 }
 function doFetch(url, options = {}) {
   options = Object.assign({}, optionsDefault, options)
+  options.headers = Object.assign({}, options.headers)
   const fetchOptions = Object.assign({}, fetchOptionsDefault)
+  fetchOptions.headers = Object.assign({}, fetchOptions.headers)
   fetchOptions.method = options.method.toUpperCase()
 
   if (options.headers) {

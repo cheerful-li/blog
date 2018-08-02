@@ -12,10 +12,10 @@ export async function getBlogDetail(data) {
   return get('/detail/:blogId', data)
 }
 export async function addBlog(data) {
-  return get('/xhr/blog/add', data)
+  return post('/xhr/blog/add', data)
 }
 export async function editBlog(data) {
-  return get('/xhr/blog/edit/:blogId', data)
+  return post('/xhr/blog/edit/:blogId', data)
 }
 
 

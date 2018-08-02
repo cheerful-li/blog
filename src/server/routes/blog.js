@@ -19,7 +19,9 @@ async function ensureUserLogined(ctx, next) {
 
 // 添加博客
 router.post('/add', ensureUserLogined, async function (ctx, next) {
-  const { authorId, title, summary, md } = ctx.request.body
+  const { title, summary, md } = ctx.request.body
+  console.log(ctx.request.body)
+  const authorId = ctx.session.userId
   const blog = new BlogModel({ authorId, title, summary, md })
   await blog.save()
   ctx.body = formatResponse.createSuccess(blog)
@@ -29,6 +31,7 @@ router.post('/add', ensureUserLogined, async function (ctx, next) {
 router.post('/edit/:blogId', ensureUserLogined, async function (ctx, next) {
   const { blogId } = ctx.params
   const { title, summary, md } = ctx.request.body
+
   const blog = await BlogModel.findOne({ id: blogId }).exec()
   blog.updateTime = new Date()
   blog.title = title
