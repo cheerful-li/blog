@@ -81,6 +81,7 @@ function doFetch(url, options = {}) {
       url += qs.stringify(options.data || {})
       delete options.data
     }
+    delete fetchOptions.body
   }
   const req = fetch(url, fetchOptions)
   // console.log(url, fetchOptions)

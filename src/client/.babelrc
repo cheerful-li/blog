@@ -4,5 +4,5 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["transform-runtime", "react-hot-loader/babel"]
+  "plugins": ["transform-runtime", "react-hot-loader/babel", "transform-decorators-legacy", "babel-plugin-transform-regenerator"]
 }

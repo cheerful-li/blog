@@ -46,7 +46,7 @@ router.get('/codeCallback', async (ctx, next) => {
       ctx.session.userId = user.id
       ctx.session.logined = true
       // 登录成功， 跳转到管理页面
-      ctx.redirect('/manage')
+      ctx.redirect('/blog/list')
     } else {
       ctx.body = createError(1)
     }

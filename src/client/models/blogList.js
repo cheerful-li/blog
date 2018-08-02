@@ -4,6 +4,7 @@
  * Time 20:58
  */
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects'
+import * as blogApi from '../services/blog.js'
 
 export default {
   namespace: 'blogList',
@@ -18,7 +19,13 @@ export default {
   },
   effects: {
     * getList(action) {
-      // yield put({ type: 'blog/setState', payload: { isLoading: true }})
+      yield put({ type: 'blogList/setState', payload: { isLoading: true }})
+      try {
+        const res = yield call(blogApi.getBlogList)
+        yield put({ type: 'blogList/setState', payload: { list: res.data }})
+      } finally{
+        yield put({ type: 'blogList/setState', payload: { isLoading: false }})
+      }
     }
   }
 }

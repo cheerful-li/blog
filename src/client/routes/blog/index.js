@@ -12,7 +12,6 @@ export default class Blog extends React.Component{
     const { route, match } = this.props
     return (
       <div className="m-blog">
-        blog
         {renderRoutes(route.routes)}
       </div>
     )

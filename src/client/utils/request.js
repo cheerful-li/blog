@@ -15,11 +15,13 @@ function checkAuth(res) {
 function checkError(res) {
   if (!res || res.errorCode) {
     throw res
+  } else {
+    return res
   }
 }
 function dealUrlParam(url, data = {}) {
-  url = pathToRegexp.compile(url).toPath(data)
-  return url
+  const compile = pathToRegexp.compile(url)
+  return compile(url)
 }
 function get(url, data) {
   url = dealUrlParam(url, data)

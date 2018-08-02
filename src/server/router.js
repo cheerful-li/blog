@@ -6,6 +6,7 @@
 const Router = require('koa-router')
 const githubAuthRouter = require('./routes/githubAuth.js')
 const blogRouter = require('./routes/blog')
+const loginRouter = require('./routes/login')
 
 // 所有异步请求添加前缀 /xhr
 let router = new Router({
@@ -14,6 +15,8 @@ let router = new Router({
 
 // github oAuth 登录
 router.use('/oauth/github', githubAuthRouter.routes() )
+
+router.use(loginRouter.routes())
 
 // blog相关操作
 router.use('/blog', blogRouter.routes() )

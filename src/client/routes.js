@@ -9,6 +9,7 @@ import Login from './routes/login.js'
 import Blog from './routes/blog/index.js'
 import BlogList from './routes/blog/list.js'
 import BlogDetail from './routes/blog/detail.js'
+import BlogEdit from './routes/blog/edit.js'
 
 export default [
   {
@@ -29,6 +30,14 @@ export default [
           {
             path: '/blog/detail/:blogId',
             component: BlogDetail,
+          },
+          {
+            path: '/blog/add',
+            component: BlogEdit,
+          },
+          {
+            path: '/blog/edit/:blogId',
+            component: BlogEdit,
           }
         ]
       }
