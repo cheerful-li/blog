@@ -9,7 +9,7 @@ export async function getBlogList(data) {
   return get('/xhr/blog/list', data)
 }
 export async function getBlogDetail(data) {
-  return get('/detail/:blogId', data)
+  return get('/xhr/blog/detail/:blogId', data)
 }
 export async function addBlog(data) {
   return post('/xhr/blog/add', data)

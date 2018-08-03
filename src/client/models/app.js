@@ -10,6 +10,7 @@ export default {
   namespace: 'app',
   state: {
     isLogined: false,
+    userId: '',
   },
   reducers: {
     setState(state, { payload }) {
@@ -19,7 +20,7 @@ export default {
   effects: {
     * checkLoginState(action) {
       const res = yield call(appApi.checkIsLogined)
-      yield put({ type: 'app/setState', payload: { isLogined: res.data.logined }})
+      yield put({ type: 'app/setState', payload: { isLogined: res.data.logined, userId: res.data.userId }})
     }
   }
 }

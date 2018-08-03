@@ -26,16 +26,28 @@ export default class BlogList extends React.Component{
   render() {
     const { blogList, app } = this.props
     const { isLoading, list } = blogList
-    const { isLogined } = app
+    const { isLogined, userId } = app
+    console.log(isLogined , userId,)
     return (
       <div className="m-blog-list">
         { isLogined && (
           <NavLink to="/blog/add">添加</NavLink>
         )}
-
-
         {isLoading && 'loading'}
-        {JSON.stringify(list)}
+        <ul>
+          {list.map((item) => {
+            return (
+              <li key={item.id}>
+                {item.title}<br/>
+                { item.summary}<br/>
+                { item.lastModifiedDate } <br/>
+                {isLogined && userId === item.authorId  && (
+                  <NavLink to={"/blog/edit/" + item.id}>编辑</NavLink>
+                )}
+              </li>
+            )
+          })}
+        </ul>
       </div>
     )
   }

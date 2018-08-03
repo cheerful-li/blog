@@ -32,7 +32,7 @@ router.post('/edit/:blogId', ensureUserLogined, async function (ctx, next) {
   const { blogId } = ctx.params
   const { title, summary, md } = ctx.request.body
 
-  const blog = await BlogModel.findOne({ id: blogId }).exec()
+  const blog = await BlogModel.findOne({ _id: blogId }).exec()
   blog.updateTime = new Date()
   blog.title = title
   blog.summary = summary
@@ -44,7 +44,7 @@ router.post('/edit/:blogId', ensureUserLogined, async function (ctx, next) {
 // 获取博客详情
 router.get('/detail/:blogId', async function (ctx, next) {
   const { blogId } = ctx.params
-  const blog = await BlogModel.findOne({ id: blogId }).exec()
+  const blog = await BlogModel.findOne({ _id: blogId }).exec()
   ctx.body = formatResponse.createSuccess(blog)
 })
 

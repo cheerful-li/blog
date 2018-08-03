@@ -13,6 +13,7 @@ const router = new Router()
 router.get('/loginState', async function (ctx, next) {
   ctx.body = formatResponse.createSuccess({
     logined: !!ctx.session.logined,
+    userId: ctx.session.userId,
   })
 })
 

@@ -26,7 +26,8 @@ export default {
       yield put({ type: 'blogEdit/setState', payload: { isLoading: true }})
       try {
         const res = yield call(blogApi.getBlogDetail, { blogId })
-        yield put({ type: 'blogEdit/setState', payload: { blog: res.data }})
+        const blog = res.data
+        yield put({ type: 'blogEdit/setState', payload: { blog, title: blog.title, summary: blog.summary, md: blog.md, }})
       } finally{
         yield put({ type: 'blogEdit/setState', payload: { isLoading: false }})
       }

@@ -21,7 +21,7 @@ function checkError(res) {
 }
 function dealUrlParam(url, data = {}) {
   const compile = pathToRegexp.compile(url)
-  return compile(url)
+  return compile(data)
 }
 function get(url, data) {
   url = dealUrlParam(url, data)
