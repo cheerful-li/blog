@@ -4,6 +4,7 @@
  * Time 20:24
  */
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import App from './routes/app.js'
 import Login from './routes/login.js'
 import Blog from './routes/blog/index.js'
@@ -18,6 +19,11 @@ export default [
       {
         path: '/login',
         component: Login,
+      },
+      {
+        path: '/',
+        exact: true,
+        component: () => <Redirect to="/blog/list" />,
       },
       {
         path: '/blog',
