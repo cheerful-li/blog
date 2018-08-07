@@ -3,14 +3,22 @@
  * Date 2018/7/25
  * Time 19:43
  */
+require("babel-register")
+require('asset-require-hook')({
+  extensions: ['jpg', 'png', 'gif', 'css', 'less']
+})
 const Koa = require('koa')
 const KoaBody = require('koa-body')
 const KoaLogger = require('koa-logger')
 const KoaSession = require('koa-session')
+const mount = require('koa-mount');
+const serve = require('koa-static');
+const path = require('path')
 
 const router = require('./router.js')
 const privateConfig = require('./privateConfig')
 const { createError } = require('./utils/formatResponse')
+const ssr = require('./routes/ssr')
 
 const app = new Koa()
 
@@ -19,6 +27,9 @@ app.keys = privateConfig.appSecretKeys
 
 // logger
 app.use(KoaLogger())
+
+// 前端静态资源访问
+app.use(mount('/dist', serve(path.join(__dirname, '../client/dist/'))))
 
 // session
 // ctx.session
@@ -38,6 +49,9 @@ app.use(KoaSession({
 // ctx.request.body
 // ctx.request.files
 app.use(KoaBody())
+
+//ssr
+app.use(ssr.routes())
 
 // 路由
 app.use(router.routes())

@@ -6,6 +6,10 @@
 import { doFetch } from '../../shared/fetch'
 import pathToRegexp from 'path-to-regexp'
 
+function isServer() {
+  return typeof global !== 'undefined' && typeof window === 'undefined' && typeof document === 'undefined'
+}
+
 function checkAuth(res) {
   if (res && res.errorCode === 110) {
     window.location.href = '/login'

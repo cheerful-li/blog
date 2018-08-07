@@ -23,6 +23,7 @@ export default [
       {
         path: '/',
         exact: true,
+        redirectTo: '/blog/list', // for server
         component: () => <Redirect to="/blog/list" />,
       },
       {

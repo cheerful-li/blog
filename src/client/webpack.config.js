@@ -3,6 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const packageJson = require('../../package.json')
 
 // console.warn('is development/?', process.env.NODE_ENV === 'development' ,process.env.NODE_ENV)
@@ -30,6 +31,14 @@ let webpackConfig =
           exclude: /(node_modules|bower_components)/,
           use: [{
             loader: 'babel-loader',
+            query: {
+              "presets": [
+                ["env", {"modules": false}],
+                "stage-0",
+                "react"
+              ],
+              "plugins": ["transform-runtime", "react-hot-loader/babel", "transform-decorators-legacy", "babel-plugin-transform-regenerator"]
+            },
           }],
         },
         {
@@ -108,22 +117,27 @@ if (process.env.NODE_ENV === 'development') {
   webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
 } else {
   webpackConfig.devtool = false
-  webpackConfig.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        // properties: false,
-        warnings: false,
-      },
-      output: {
-        // beautify: true,
-        // quote_keys: true,
-      },
-      mangle: {
-        // screw_ie8: false,
-      },
-      sourceMap: false,
-    })
-  )
+  //压缩js
+  webpackConfig.optimization = {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            // properties: false,
+            warnings: false,
+          },
+          output: {
+            // beautify: true,
+            // quote_keys: true,
+          },
+          mangle: {
+            // screw_ie8: false,
+          },
+          sourceMap: false,
+        }
+      })
+    ]
+  }
 }
 
 // 打包开发文件
