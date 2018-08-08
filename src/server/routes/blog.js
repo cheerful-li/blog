@@ -10,6 +10,7 @@ const formatResponse = require('../utils/formatResponse')
 const router = new Router()
 
 async function ensureUserLogined(ctx, next) {
+  if (ctx.s)
   if (ctx.session.logined) {
     await next()
   } else {

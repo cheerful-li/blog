@@ -5,6 +5,9 @@
  */
 import routes from '../../client/routes'
 import { matchRoutes } from 'react-router-config'
+import { renderToString } from 'react-dom/server'
+import {registerModel, getStore} from './modelRegister'
+import { encode, decode } from '../utils/jwt'
 
 function getRedirectUrl(routePathArr) {
   for(let item of routePathArr) {
@@ -14,11 +17,14 @@ function getRedirectUrl(routePathArr) {
   }
 }
 
-function getAllRequestPromise(routePathArr, dispatch) {
+function getAllRequestPromise(routePathArr, store) {
   const promiseArr = []
   for(let item of routePathArr) {
-    if (item.route.component.fetchData) {}
+    if (item.route.component.fetchData) {
+      promiseArr.push(item.route.component.fetchData(store.dispatch))
+    }
   }
+  return Promise.all(promiseArr)
 }
 function getRoutes() {
   return async function(ctx, next) {
@@ -31,9 +37,14 @@ function getRoutes() {
     if (redirectUrl) {
       ctx.redirect(redirectUrl)
     } else {
-      getAllRequestPromise(routePathArr)
+      let jwt = ''
+      if (ctx.session.logined && ctx.session.userId) {
+        jwt = encode(ctx.session.userId)
+      }
+      const store = getStore({ preloadedState: { jwt } })
+      await getAllRequestPromise(routePathArr, store)
+      console.log(store, store.getState())
     }
-
 
   }
 }

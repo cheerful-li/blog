@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82736fc-b332-4b8e-bb14-78b9b33b4c05" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/client/routes/blog/list.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/routes/ssr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/client/.babelrc" afterPath="$PROJECT_DIR$/src/client/.babelrc22" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/client/getStore.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/utils/jwt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/shared/wrapApi.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/routes.js" afterPath="$PROJECT_DIR$/src/client/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/routes/blog/list.js" afterPath="$PROJECT_DIR$/src/client/routes/blog/list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/utils/request.js" afterPath="$PROJECT_DIR$/src/client/utils/request.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/webpack.config.js" afterPath="$PROJECT_DIR$/src/client/webpack.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/.babelrc" afterPath="$PROJECT_DIR$/src/server/.babelrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/index.js" afterPath="$PROJECT_DIR$/src/server/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/index.js" afterPath="$PROJECT_DIR$/src/client/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/models/app.js" afterPath="$PROJECT_DIR$/src/client/models/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/models/blogEdit.js" afterPath="$PROJECT_DIR$/src/client/models/blogEdit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/models/blogList.js" afterPath="$PROJECT_DIR$/src/client/models/blogList.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/privateConfig.js" afterPath="$PROJECT_DIR$/src/server/privateConfig.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/routes/blog.js" afterPath="$PROJECT_DIR$/src/server/routes/blog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/routes/ssr.js" afterPath="$PROJECT_DIR$/src/server/routes/ssr.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,12 +27,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/routes.js">
+      <file leaf-file-name="blogList.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/models/blogList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="560">
+              <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+              <folding>
+                <element signature="e#80#157#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,8 +42,8 @@
       <file leaf-file-name="ssr.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/routes/ssr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="-239">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="e#79#119#0" expanded="true" />
               </folding>
@@ -48,46 +51,87 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/routes/blog/list.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="252">
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
-                <element signature="e#79#104#0" expanded="true" />
+                <element signature="e#80#105#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/router.js">
+      <file leaf-file-name="modelRegister.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/modelRegister.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="476">
+              <caret line="24" column="41" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blog.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="blog.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/routes/blog.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="961">
-              <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+            <state relative-caret-position="420">
+              <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/client/utils/request.js">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/models/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+            <state relative-caret-position="84">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blogEdit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/models/blogEdit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1176">
+              <caret line="42" column="78" lean-forward="false" selection-start-line="42" selection-start-column="78" selection-end-line="42" selection-end-column="78" />
               <folding>
-                <element signature="e#79#123#0" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#79#156#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="privateConfig.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/privateConfig.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="6" column="47" lean-forward="true" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jwt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/utils/jwt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wrapApi.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/shared/wrapApi.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -113,6 +157,8 @@
       <find>/manage</find>
       <find>checkLoginState</find>
       <find>checkIsLogined</find>
+      <find>getStore</find>
+      <find>fetchData</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,11 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/server/githubAuth.js" />
-        <option value="$USER_HOME$/Desktop/下载/CTI-电话条集成开发文档/开发排期.md" />
-        <option value="$PROJECT_DIR$/src/server/db/models/blog.js" />
-        <option value="$PROJECT_DIR$/src/server/controller/githubAuth.js" />
-        <option value="$PROJECT_DIR$/src/server/privateConfig.js" />
         <option value="$PROJECT_DIR$/src/server/models/blog.js" />
         <option value="$PROJECT_DIR$/src/server/controllers/user.js" />
         <option value="$PROJECT_DIR$/src/server/models/user.js" />
@@ -145,21 +186,16 @@
         <option value="$PROJECT_DIR$/src/client/routes/blog/detail.js" />
         <option value="$PROJECT_DIR$/src/server/routes/githubAuth.js" />
         <option value="$PROJECT_DIR$/src/client/routes/blog/add.js" />
-        <option value="$PROJECT_DIR$/src/client/models/blogList.js" />
         <option value="$PROJECT_DIR$/src/client/routes/blog/index.js" />
         <option value="$PROJECT_DIR$/src/client/.babelrc" />
         <option value="$PROJECT_DIR$/src/client/services/app.js" />
         <option value="$PROJECT_DIR$/src/client/routes/app.js" />
         <option value="$PROJECT_DIR$/src/server/router.js" />
-        <option value="$PROJECT_DIR$/src/client/index.js" />
         <option value="$PROJECT_DIR$/src/client/routes/blog/edit.js" />
         <option value="$PROJECT_DIR$/src/client/modelRegister.js" />
         <option value="$PROJECT_DIR$/src/shared/fetch.js" />
         <option value="$PROJECT_DIR$/src/server/routes/login.js" />
-        <option value="$PROJECT_DIR$/src/client/models/blogEdit.js" />
-        <option value="$PROJECT_DIR$/src/client/models/app.js" />
         <option value="$PROJECT_DIR$/src/client/services/blog.js" />
-        <option value="$PROJECT_DIR$/src/server/routes/blog.js" />
         <option value="$PROJECT_DIR$/src/client/routes/blog/list.less.css" />
         <option value="$PROJECT_DIR$/src/client/routes/blog/list.less" />
         <option value="$PROJECT_DIR$/src/client/routes/blog/list.js" />
@@ -170,8 +206,18 @@
         <option value="$PROJECT_DIR$/src/client/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/client/routes.js" />
         <option value="$PROJECT_DIR$/../../git_project/cvd_web_client/index.html" />
-        <option value="$PROJECT_DIR$/src/server/routes/ssr.js" />
         <option value="$PROJECT_DIR$/src/client/utils/request.js" />
+        <option value="$PROJECT_DIR$/src/client/models/blogList.js" />
+        <option value="$PROJECT_DIR$/src/shared/wrapApi.js" />
+        <option value="$PROJECT_DIR$/src/client/models/app.js" />
+        <option value="$PROJECT_DIR$/src/client/models/blogEdit.js" />
+        <option value="$PROJECT_DIR$/src/server/privateConfig.js" />
+        <option value="$PROJECT_DIR$/src/server/utils/jwt.js" />
+        <option value="$PROJECT_DIR$/src/client/dealStore.js" />
+        <option value="$PROJECT_DIR$/src/client/getStore.js" />
+        <option value="$PROJECT_DIR$/src/client/index.js" />
+        <option value="$PROJECT_DIR$/src/server/routes/ssr.js" />
+        <option value="$PROJECT_DIR$/src/server/routes/blog.js" />
       </list>
     </option>
   </component>
@@ -234,7 +280,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -252,35 +297,6 @@
               <item name="blog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blog" type="b2602c69:ProjectViewProjectNode" />
@@ -306,12 +322,20 @@
               <item name="blog" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -399,12 +423,16 @@
       <workItem from="1533638927209" duration="217000" />
       <workItem from="1533639311717" duration="581000" />
       <workItem from="1533640087021" duration="1877000" />
-      <workItem from="1533643486206" duration="2749000" />
+      <workItem from="1533643486206" duration="3002000" />
+      <workItem from="1533693675434" duration="601000" />
+      <workItem from="1533709662064" duration="3589000" />
+      <workItem from="1533713812850" duration="594000" />
+      <workItem from="1533718042493" duration="301000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74251000" />
+    <option name="totallyTimeSpent" value="79589000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -442,41 +470,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../git_project/cvd_web_client/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="22" column="48" lean-forward="false" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../git_project/fe_admin_platform/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/下载/CTI-电话条集成开发文档/开发排期.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="364">
-            <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/db/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/privateConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="67" lean-forward="true" selection-start-line="5" selection-start-column="67" selection-end-line="5" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -526,19 +523,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/routes/blog.js" />
     <entry file="file://$PROJECT_DIR$/src/client/routes/blogList.js" />
-    <entry file="file://$PROJECT_DIR$/src/client/routes/blog/detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/routes/blog/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -581,39 +570,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/models/blogList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/models/blogEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/routes/blog/edit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
           <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/services/blog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/modelRegister.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -628,7 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-40461">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -644,7 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -660,7 +618,7 @@
         <state relative-caret-position="308">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
-            <marker date="1533639549256" expanded="true" signature="1006:1620" ph="{&quot;babel-preset-env&quot;: &quot;^1.7.0&quot;...}" />
+            <marker date="1533711993508" expanded="true" signature="1006:1673" ph="{&quot;babel-preset-env&quot;: &quot;^1.7.0&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -683,7 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -705,7 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -713,15 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/models/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -729,7 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6776">
           <caret line="242" column="45" lean-forward="false" selection-start-line="242" selection-start-column="45" selection-end-line="242" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -737,7 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7000">
           <caret line="250" column="11" lean-forward="false" selection-start-line="250" selection-start-column="11" selection-end-line="250" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,25 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="237" column="11" lean-forward="true" selection-start-line="237" selection-start-column="11" selection-end-line="237" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/routes/blog/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding>
-            <element signature="e#79#104#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,43 +697,138 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/routes/blog.js">
+    <entry file="file://$PROJECT_DIR$/src/client/routes/blog/list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="961">
-          <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="112">
+          <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="532">
+          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/services/blog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/utils/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="784">
+          <caret line="32" column="18" lean-forward="false" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shared/wrapApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/blog/detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/models/blogList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+          <folding>
+            <element signature="e#80#157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/models/blogEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1176">
+          <caret line="42" column="78" lean-forward="false" selection-start-line="42" selection-start-column="78" selection-end-line="42" selection-end-column="78" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#79#156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/privateConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="47" lean-forward="true" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/utils/jwt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/getStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/models/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/modelRegister.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="24" column="41" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#80#105#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/routes/ssr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="-239">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="e#79#119#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/utils/request.js">
+    <entry file="file://$PROJECT_DIR$/src/server/routes/blog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-          <folding>
-            <element signature="e#79#123#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="420">
+          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>

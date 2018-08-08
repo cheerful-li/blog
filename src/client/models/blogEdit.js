@@ -5,6 +5,7 @@
  */
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects'
 import * as blogApi from '../services/blog.js'
+import wrapApi from '../../shared/wrapApi'
 
 export default {
   namespace: 'blogEdit',
@@ -25,7 +26,7 @@ export default {
     * getBlogDetail({ payload: { blogId }}) {
       yield put({ type: 'blogEdit/setState', payload: { isLoading: true }})
       try {
-        const res = yield call(blogApi.getBlogDetail, { blogId })
+        const res = yield call(wrapApi(blogApi.getBlogDetail), { blogId })
         const blog = res.data
         yield put({ type: 'blogEdit/setState', payload: { blog, title: blog.title, summary: blog.summary, md: blog.md, }})
       } finally{
@@ -37,7 +38,7 @@ export default {
       const { md, title, summary } = yield select(({ blogEdit }) => blogEdit)
       try {
         const api = isEdit ? blogApi.editBlog : blogApi.addBlog
-        const res = yield call(api, { blogId, md, title, summary })
+        const res = yield call(wrapApi(api), { blogId, md, title, summary })
       } finally{
         yield put({ type: 'blogEdit/setState', payload: { isLoading: false }})
       }

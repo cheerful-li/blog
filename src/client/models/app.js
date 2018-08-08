@@ -5,6 +5,7 @@
  */
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects'
 import * as appApi from '../services/app.js'
+import wrapApi from '../../shared/wrapApi'
 
 export default {
   namespace: 'app',
@@ -19,7 +20,7 @@ export default {
   },
   effects: {
     * checkLoginState(action) {
-      const res = yield call(appApi.checkIsLogined)
+      const res = yield call(wrapApi(appApi.checkIsLogined))
       yield put({ type: 'app/setState', payload: { isLogined: res.data.logined, userId: res.data.userId }})
     }
   }
