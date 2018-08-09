@@ -6,11 +6,19 @@
 const Router = require('koa-router')
 const BlogModel = require('../models/blog')
 const formatResponse = require('../utils/formatResponse')
+import { decode } from '../utils/jwt'
 
 const router = new Router()
 
 async function ensureUserLogined(ctx, next) {
-  if (ctx.s)
+  // 后端ssr时调用的请求，使用jwt授权
+  if (ctx.query && ctx.query.jwt) {
+    const payload = decode(ctx.query.jwt)
+    if (payload.userId) {
+      ctx.session.logined = true
+      ctx.session.userId = payload.userId
+    }
+  }
   if (ctx.session.logined) {
     await next()
   } else {

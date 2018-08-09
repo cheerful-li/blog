@@ -23,7 +23,7 @@ export default {
     }
   },
   effects: {
-    * getBlogDetail({ payload: { blogId }}) {
+    *getBlogDetail({ payload: { blogId }}) {
       yield put({ type: 'blogEdit/setState', payload: { isLoading: true }})
       try {
         const res = yield call(wrapApi(blogApi.getBlogDetail), { blogId })
@@ -35,7 +35,8 @@ export default {
     },
     * submit({ payload: { blogId, isEdit }}) {
       yield put({ type: 'blogEdit/setState', payload: { isLoading: true }})
-      const { md, title, summary } = yield select(({ blogEdit }) => blogEdit)
+      const blogEdit = yield select(({ blogEdit }) => blogEdit)
+      const { md, title, summary } = blogEdit
       try {
         const api = isEdit ? blogApi.editBlog : blogApi.addBlog
         const res = yield call(wrapApi(api), { blogId, md, title, summary })

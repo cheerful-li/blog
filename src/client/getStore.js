@@ -4,17 +4,22 @@
  * Time 15:16
  */
 
-import {registerModel, getStore} from './modelRegister'
+import ReduxModelRegister from './modelRegister'
 import blogListModel from './models/blogList'
 import appModel from './models/app'
 import blogEditModel from './models/blogEdit'
+/*
 
+*/
+
+const modelRegister = new ReduxModelRegister()
 
 // 注册model
-registerModel(blogListModel)
-registerModel(appModel)
-registerModel(blogEditModel)
+modelRegister.registerModel(blogListModel)
+/*modelRegister.registerModel(blogListModel)
+modelRegister.registerModel(appModel)
+modelRegister.registerModel(blogEditModel)*/
 
 export default function(...args) {
-  return getStore(...args)
+  return modelRegister.getStore(...args)
 }

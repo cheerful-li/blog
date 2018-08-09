@@ -6,7 +6,7 @@
 import routes from '../../client/routes'
 import { matchRoutes } from 'react-router-config'
 import { renderToString } from 'react-dom/server'
-import {registerModel, getStore} from './modelRegister'
+import getStore from '../../client/getStore'
 import { encode, decode } from '../utils/jwt'
 
 function getRedirectUrl(routePathArr) {
@@ -29,17 +29,19 @@ function getAllRequestPromise(routePathArr, store) {
 function getRoutes() {
   return async function(ctx, next) {
     const routePathArr = matchRoutes(routes, ctx.url)
-    if (!routePathArr.length) {
+    // console.log('matchRoutes ', ctx.url, 'get ', routePathArr)
+    if (ctx.url !== '/' && routePathArr.length <= 2) {
+      console.log('not matched to ssr', ctx.url)
       return next()
     }
-    console.log(routePathArr)
+    console.log('matched ssr path', ctx.url)
     const redirectUrl = getRedirectUrl(routePathArr)
     if (redirectUrl) {
       ctx.redirect(redirectUrl)
     } else {
       let jwt = ''
       if (ctx.session.logined && ctx.session.userId) {
-        jwt = encode(ctx.session.userId)
+        jwt = encode({ userId: ctx.session.userId})
       }
       const store = getStore({ preloadedState: { jwt } })
       await getAllRequestPromise(routePathArr, store)
