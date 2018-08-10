@@ -28,7 +28,7 @@ export default class ReduxModelRegister{
     }
   }
   getStore({ preloadedState = {}, middlewares = [], enhancers = [] } = {}) {
-    if (this.store) return store
+    if (this.store) return this.store
     const sagaMiddleware = createSagaMiddleware()
     let reducerMap = {}
     let rootReducers
@@ -36,11 +36,16 @@ export default class ReduxModelRegister{
     this.modelArr.forEach((model) => {
       const { namespace, state = {}, effects = {}, reducers = {} } = model
       reducerMap[namespace] = function(theState = state, action = {}) {
+        // console.log('reducer start', namespace)
+        console.log(theState, action)
         const { type, payload } = action
+        // console.log('action type:', type)
         // 处理当前model的reducer
         if (type.indexOf(namespace + '/') === 0) {
+          // console.log('right model:', namespace, type)
           let realType = type.slice(namespace.length + 1)
           const theReducer = reducers[realType]
+          // console.log('find reducer', realType, theReducer, reducers)
           if (theReducer) return theReducer(theState, action)
         }
         return theState
@@ -50,17 +55,24 @@ export default class ReduxModelRegister{
       }
     })
     function * rootSaga() {
-      for (let effectName in allSagaEffect) {
-        function * temp(action, ...args) {
+      const effectNameArr = Object.keys(allSagaEffect)
+      function getTemp(effectName) {
+        return function*(action, ...args) {
+          console.log('saga start:', effectName, action, args)
           try{
             const result =  yield call(allSagaEffect[effectName], action)
-            action.__resolve(result)
+            if (!action.__resolve) console.log('no __resolve, ', action)
+            action.__resolve && action.__resolve(result)
           } catch(e) {
-            action.__reject(e)
+            action.__reject && action.__reject(e)
           }
 
         }
-        yield takeEvery(effectName, temp)
+      }
+      for (let effectName of effectNameArr) {
+
+        console.log('takeEvery ', effectName)
+        yield takeEvery(effectName, getTemp(effectName))
       }
     }
     // 用于实现 dispatch({ type: 'xxx/xxx' }) 这种返回一个promise
@@ -69,11 +81,13 @@ export default class ReduxModelRegister{
       const { type } = action
       // model 中定义的相关action
       if (type && allSagaEffect[type]) {
-        const promise = new Promise(function(resolve, reject) {
-          action.__resolve = resolve.bind(promise)
-          action.__reject = reject.bind(promise)
+        console.log(Promise)
+        let promise
+        promise = new Promise(function(resolve, reject) {
+          action.__resolve = resolve
+          action.__reject = reject
         })
-
+        console.log('promise is,', promise)
         next(action)
         return promise
       } else { // model之外的action

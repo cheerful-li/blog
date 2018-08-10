@@ -23,7 +23,7 @@ export default {
     }
   },
   effects: {
-    *getBlogDetail({ payload: { blogId }}) {
+    *getBlogDetail({ payload: { blogId } = {}}) {
       yield put({ type: 'blogEdit/setState', payload: { isLoading: true }})
       try {
         const res = yield call(wrapApi(blogApi.getBlogDetail), { blogId })
