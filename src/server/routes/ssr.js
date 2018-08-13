@@ -3,9 +3,17 @@
  * Date 2018/8/7
  * Time 17:50
  */
-import routes from '../../client/routes'
-import { matchRoutes } from 'react-router-config'
+
+import { matchRoutes, renderRoutes } from 'react-router-config'
 import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router'
+import { connect, Provider  } from 'react-redux'
+import React from 'react'
+const fs = require('fs')
+const path = require('path')
+
+const { promisify } = require('../utils/index.js')
+import routes from '../../client/routes'
 import getStore from '../../client/getStore'
 import { encode, decode } from '../utils/jwt'
 
@@ -26,11 +34,29 @@ function getAllRequestPromise(routePathArr, store) {
   }
   return Promise.all(promiseArr)
 }
+function getDomString(url, store) {
+  const html = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={url}>
+        {renderRoutes(routes)}
+      </StaticRouter>
+    </Provider>
+  )
+  return html
+}
+async function getPageHtml({ url, state, reactString }) {
+  const insertPoint = '<div id=root></div>'
+  // console.log(123123, path.join(__dirname, '../../client/dist/index.html'))
+  const indexHtmlTemplate = await promisify(fs.readFile, fs)(path.join(__dirname, '../../client/dist/index.html'), { encoding: 'utf8'})
+  // console.log(indexHtmlTemplate)
+  const replaceStr = `<div id=root>${reactString}</div><script>window.REDUX_INIT_STATE = ${JSON.stringify(state)}</script>`
+  return indexHtmlTemplate.replace(insertPoint, replaceStr)
+}
 function getRoutes() {
   return async function(ctx, next) {
     const routePathArr = matchRoutes(routes, ctx.url)
-    // console.log('matchRoutes ', ctx.url, 'get ', routePathArr)
-    if (ctx.url !== '/' && routePathArr.length <= 2) {
+    console.log('matchRoutes ', ctx.url, 'get ', routePathArr)
+    if (ctx.url !== '/' && routePathArr.length < 2) {
       console.log('not matched to ssr', ctx.url)
       return next()
     }
@@ -44,8 +70,15 @@ function getRoutes() {
         jwt = encode({ userId: ctx.session.userId})
       }
       const store = getStore({ preloadedState: { jwt } })
-      await getAllRequestPromise(routePathArr, store)
-      console.log(store, store.getState())
+      const resultArr = await getAllRequestPromise(routePathArr, store)
+      console.log(resultArr,'\r\n\r\n\r\n', store.getState())
+      const domString = getDomString(ctx.url, store)
+      const responseHtml = await getPageHtml({
+        url: ctx.url,
+        state: store.getState(),
+        reactString: domString,
+      })
+      ctx.body = responseHtml
     }
 
   }

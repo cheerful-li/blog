@@ -17,33 +17,39 @@ export default [
     component: App,
     routes: [
       {
-        path: '/login',
-        component: Login,
-      },
-      {
         path: '/',
         exact: true,
         redirectTo: '/blog/list', // for server
         component: () => <Redirect to="/blog/list" />,
       },
       {
+        path: '/login',
+        exact: true,
+        component: Login,
+      },
+      {
         path: '/blog',
+        exact: true,
         component: Blog,
         routes: [
           {
             path: '/blog/list',
+            exact: true,
             component: BlogList,
           },
           {
             path: '/blog/detail/:blogId',
+            exact: true,
             component: BlogDetail,
           },
           {
             path: '/blog/add',
+            exact: true,
             component: BlogEdit,
           },
           {
             path: '/blog/edit/:blogId',
+            exact: true,
             component: BlogEdit,
           }
         ]

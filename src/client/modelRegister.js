@@ -37,7 +37,7 @@ export default class ReduxModelRegister{
       const { namespace, state = {}, effects = {}, reducers = {} } = model
       reducerMap[namespace] = function(theState = state, action = {}) {
         // console.log('reducer start', namespace)
-        console.log(theState, action)
+        // console.log(theState, action)
         const { type, payload } = action
         // console.log('action type:', type)
         // 处理当前model的reducer
@@ -58,7 +58,7 @@ export default class ReduxModelRegister{
       const effectNameArr = Object.keys(allSagaEffect)
       function getTemp(effectName) {
         return function*(action, ...args) {
-          console.log('saga start:', effectName, action, args)
+          // console.log('saga start:', effectName, action, args)
           try{
             const result =  yield call(allSagaEffect[effectName], action)
             if (!action.__resolve) console.log('no __resolve, ', action)
@@ -71,7 +71,7 @@ export default class ReduxModelRegister{
       }
       for (let effectName of effectNameArr) {
 
-        console.log('takeEvery ', effectName)
+        // console.log('takeEvery ', effectName)
         yield takeEvery(effectName, getTemp(effectName))
       }
     }
@@ -81,13 +81,13 @@ export default class ReduxModelRegister{
       const { type } = action
       // model 中定义的相关action
       if (type && allSagaEffect[type]) {
-        console.log(Promise)
+        // console.log(Promise)
         let promise
         promise = new Promise(function(resolve, reject) {
           action.__resolve = resolve
           action.__reject = reject
         })
-        console.log('promise is,', promise)
+        // console.log('promise is,', promise)
         next(action)
         return promise
       } else { // model之外的action
@@ -96,7 +96,7 @@ export default class ReduxModelRegister{
     }
 
     rootReducers = combineReducers(reducerMap)
-    console.log('create store with', reducerMap, rootReducers, preloadedState)
+    // console.log('create store with', reducerMap, rootReducers, preloadedState)
     middlewares.push(promiseMiddleware)
     middlewares.push(sagaMiddleware)
     this.store = createStore(rootReducers, preloadedState, composeEnhancers(...enhancers, applyMiddleware(...middlewares)))

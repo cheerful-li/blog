@@ -3,8 +3,10 @@
  * Date 2018/7/27
  * Time 13:11
  */
+
 require('isomorphic-fetch')
 const qs = require('qs')
+import { isServer, getServerHost } from './util'
 
 /*
 *
@@ -44,6 +46,10 @@ const optionsDefault = {
   headers: {},
 }
 function doFetch(url, options = {}) {
+  if (isServer() && url && url.indexOf('/') === 0 && url.indexOf('//') !== 0) {
+    // 服务器本地请求，添加前缀
+    url = getServerHost() + url
+  }
   options = Object.assign({}, optionsDefault, options)
   options.headers = Object.assign({}, options.headers)
   const fetchOptions = Object.assign({}, fetchOptionsDefault)
