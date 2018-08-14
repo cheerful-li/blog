@@ -12,7 +12,7 @@ export default class Login extends React.Component{
   render() {
     const githubAuthParams = {
       client_id: '0d644dadb0736ac9ab23',
-      redirect_uri: 'http://localhost:3001/xhr/oauth/github/codeCallback',
+      redirect_uri: 'http://localhost:3000/xhr/oauth/github/codeCallback',
       scope: 'read:user',
     }
     return (

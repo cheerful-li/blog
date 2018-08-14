@@ -21,7 +21,7 @@ export default class BlogList extends React.Component{
   static fetchData = async function (dispatch) {
     return await dispatch({ type: 'blogList/getList'})
   }
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props
     BlogList.fetchData(dispatch)
   }

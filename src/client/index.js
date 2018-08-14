@@ -13,8 +13,8 @@ import getStore from './getStore'
 import routes from './routes.js'
 
 
-
-const store = getStore()
+const preloadedState = window.REDUX_INIT_STATE || {}
+const store = getStore({ preloadedState })
 
 render(
   <Provider store={store}>

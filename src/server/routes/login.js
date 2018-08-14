@@ -5,12 +5,13 @@
  */
 const Router = require('koa-router')
 const formatResponse = require('../utils/formatResponse')
+const { unifyLoginState } = require('../utils/index.js')
 
 const router = new Router()
 
 
 // 添加博客
-router.get('/loginState', async function (ctx, next) {
+router.get('/loginState', unifyLoginState, async function (ctx, next) {
   ctx.body = formatResponse.createSuccess({
     logined: !!ctx.session.logined,
     userId: ctx.session.userId,

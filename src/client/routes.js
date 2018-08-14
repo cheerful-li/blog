@@ -29,7 +29,6 @@ export default [
       },
       {
         path: '/blog',
-        exact: true,
         component: Blog,
         routes: [
           {

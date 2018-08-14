@@ -12,15 +12,18 @@ const mapStateToProps = ({ blogEdit, app }) => {
 @connect(mapStateToProps)
 export default class BlogEdit extends React.Component{
   static propTypes = {}
-  static async fetchData(dispatch, isEdit, blogId) {
+  static async fetchData(dispatch, match) {
+    const { url, params } = match
+    let isEdit = url !== '/blog/add'
+    let blogId = params.blogId
     if (isEdit) {
       await dispatch({ type: 'blogEdit/getBlogDetail', payload: { blogId }})
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     const { match, dispatch, } = this.props
     const { url, params } = match
-    BlogEdit.fetchData(dispatch, url !== '/blog/add', params.blogId)
+    BlogEdit.fetchData(dispatch, match)
   }
   setModelState = (state = {}) => {
     return this.dispatchModelEffect('setState', state)

@@ -16,7 +16,7 @@ class App extends React.Component{
   static fetchData = async function (dispatch) {
     return await dispatch({ type: 'app/checkLoginState'})
   }
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props
     App.fetchData(dispatch)
   }

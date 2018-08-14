@@ -29,7 +29,9 @@ export default {
         const res = yield call(wrapApi(blogApi.getBlogDetail), { blogId })
         const blog = res.data
         yield put({ type: 'blogEdit/setState', payload: { blog, title: blog.title, summary: blog.summary, md: blog.md, }})
+        console.log('get blog detail')
       } finally{
+        console.log('finally')
         yield put({ type: 'blogEdit/setState', payload: { isLoading: false }})
       }
     },

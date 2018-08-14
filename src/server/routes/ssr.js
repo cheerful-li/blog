@@ -12,7 +12,7 @@ import React from 'react'
 const fs = require('fs')
 const path = require('path')
 
-const { promisify } = require('../utils/index.js')
+const { promisify, delay } = require('../utils/index.js')
 import routes from '../../client/routes'
 import getStore from '../../client/getStore'
 import { encode, decode } from '../utils/jwt'
@@ -29,7 +29,7 @@ function getAllRequestPromise(routePathArr, store) {
   const promiseArr = []
   for(let item of routePathArr) {
     if (item.route.component.fetchData) {
-      promiseArr.push(item.route.component.fetchData(store.dispatch))
+      promiseArr.push(item.route.component.fetchData(store.dispatch, item.match))
     }
   }
   return Promise.all(promiseArr)
@@ -55,9 +55,9 @@ async function getPageHtml({ url, state, reactString }) {
 function getRoutes() {
   return async function(ctx, next) {
     const routePathArr = matchRoutes(routes, ctx.url)
-    console.log('matchRoutes ', ctx.url, 'get ', routePathArr)
+    // console.log('matchRoutes ', ctx.url, 'get ', routePathArr)
     if (ctx.url !== '/' && routePathArr.length < 2) {
-      console.log('not matched to ssr', ctx.url)
+      // console.log('not matched to ssr', ctx.url)
       return next()
     }
     console.log('matched ssr path', ctx.url)
@@ -71,8 +71,10 @@ function getRoutes() {
       }
       const store = getStore({ preloadedState: { jwt } })
       const resultArr = await getAllRequestPromise(routePathArr, store)
-      console.log(resultArr,'\r\n\r\n\r\n', store.getState())
+      // await delay(10000)
+      // console.log('state: ' ,store.getState())
       const domString = getDomString(ctx.url, store)
+      // console.log('state: ' ,store.getState())
       const responseHtml = await getPageHtml({
         url: ctx.url,
         state: store.getState(),
